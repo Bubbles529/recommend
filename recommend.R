@@ -7,7 +7,7 @@ ratings<-ratings[,.(user_id,movie_id)]
 ratings<-cbind(ratings,group_id=rep(1:8,len=nrow(ratings)))
 recall_sum<-0
 precision_sum<-0
-cl <- makeCluster(4)
+cl <- parallel::makeCluster(4)
 for(i in c(1:8)){
   testData<-ratings[group_id==1,.(user_id,movie_id)]
   trainData<-ratings[group_id!=1,.(user_id,movie_id)]
